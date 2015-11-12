@@ -4,6 +4,7 @@ function Thermostat (){
   this.temperature = 20;
   this.minimumTemp = 10;
   this.maximumTemp = 25;
+  this.colour = 'yellow';
 }
 
 Thermostat.prototype.getCurrentTemperature = function() {
@@ -36,4 +37,28 @@ Thermostat.prototype.powerSaving = function(mode) {
 
 Thermostat.prototype.isMaximumTemp = function() {
   return this.temperature === this.maximumTemp;
+};
+
+Thermostat.prototype.reset = function() {
+  return (this.temperature = 20);
+};
+
+Thermostat.prototype._setColour = function() {
+  switch (true) {
+    case this.temperature < 18:
+      this.colour = 'green';
+    break;
+
+    case this.temperature > 24:
+      this.colour = 'red';
+    break;
+
+    default: this.colour = 'yellow';
+
+  }
+};
+
+Thermostat.prototype.getColour = function() {
+  this._setColour();
+  return this.colour;
 };
