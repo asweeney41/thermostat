@@ -5,6 +5,7 @@ function Thermostat (){
   this.minimumTemp = 10;
   this.maximumTemp = 25;
   this.colour = 'yellow';
+  this.mode = true;
 }
 
 Thermostat.prototype.getCurrentTemperature = function() {
@@ -29,9 +30,13 @@ Thermostat.prototype.isMinimumTemp = function() {
   return this.temperature === this.minimumTemp;
 };
 
-Thermostat.prototype.powerSaving = function(mode) {
-  if (mode === false) {
+Thermostat.prototype.powerSaving = function() {
+  if (this.mode) {
     this.maximumTemp = 32;
+    this.mode = false;
+  } else {
+    this.maximumTemp = 25;
+    this.mode = true;
   }
 };
 
@@ -39,7 +44,7 @@ Thermostat.prototype.isMaximumTemp = function() {
   return this.temperature === this.maximumTemp;
 };
 
-Thermostat.prototype.reset = function() {
+Thermostat.prototype.resetTemp = function() {
   return (this.temperature = 20);
 };
 
